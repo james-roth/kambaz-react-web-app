@@ -1,13 +1,7 @@
-import { Link } from "react-router";
-
 export default function Lab1() {
     return (
         <div id="wd-lab1">
             <h2>Lab 1</h2>
-            <h3>James Roth, Section 01</h3>
-            <a href="https://github.com/james-roth/kambaz-react-web-app-cs4550-sp25-james">Github Source Code</a><br/>
-            <Link to="/Kambaz">Kambaz Home</Link>
-            
             <h3>HTML Examples</h3>
             <div id="wd-h-tag">
                 <div id="wd-p-tag">
