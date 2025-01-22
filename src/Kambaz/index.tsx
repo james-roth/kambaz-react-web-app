@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router";
+import { Route, Routes, Link } from "react-router";
 import Account from "./Account";
 import Dashboard from "./dashboard";
 import Courses from "./Courses";
@@ -7,6 +7,8 @@ import KambazNavigation from "./navigation";
 export default function Kambaz() {
     return (
         <div id="wd-kambaz">
+            <h1>Kambaz</h1>
+            <Link to="/Labs">Labs</Link> <br />
             <table align="left">
                 <tr>
                     <td valign="top">
@@ -14,7 +16,7 @@ export default function Kambaz() {
                     </td>
                     <td>
                         <Routes>
-                            <Route path="/" element={<Navigate to="Account" />} />
+                            {/* <Route path="/" element={<Navigate to="Account" />} /> */}
                             <Route path="/Account/*" element={<Account />} />
                             <Route path="/Dashboard" element={<Dashboard />} />
                             <Route path="/Courses/:cid/*" element={<Courses />} />
