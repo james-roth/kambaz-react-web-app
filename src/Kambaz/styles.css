@@ -38,7 +38,45 @@ body * {
   border-left: 3px solid green !important;
 }
 
+.wd-asgn {
+  border-left: 5px solid green !important;
+  padding-left: 10px;
+  border-right: 2px gray solid !important;
+  border-bottom: 2px gray solid !important;
+}
+
+.wd-asgn-link-font {
+  font-weight: bold;
+  font-size: 120%;
+}
+
+.wd-asgn-modules-text {
+  font-size: 100%;
+  color: red;
+  font-weight: 110%;
+}
+
+.wd-asgn-description-text {
+  font-size: 100%;
+  color: #404040;
+  font-weight: 110%;
+}
+
 .wd-dashboard-course {
   padding-top: 30;
   padding-bottom: 30;
+}
+
+.wd-list-group {
+  padding-right: 30px;
+}
+
+.wd-course-menu-toggled {
+  border-left: 2px solid black !important;
+  padding-left: 3px;
+}
+
+.wd-course-menu-untoggled {
+  border-left: unset !important;
+  padding-left: 3px;
 }

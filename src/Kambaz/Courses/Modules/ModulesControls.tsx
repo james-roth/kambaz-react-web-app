@@ -1,6 +1,8 @@
 import { FaPlus } from "react-icons/fa6";
 import GreenCheckmark from "./GreenCheckmark";
 import { Button, Dropdown } from "react-bootstrap";
+import { LuCircleSlash2 } from "react-icons/lu";
+
 export default function ModulesControls() {
     return (
         <div id="wd-modules-controls" className="text-nowrap">
@@ -22,11 +24,20 @@ export default function ModulesControls() {
                     <Dropdown.Item id="wd-publish-modules-only">
                         <GreenCheckmark /> Publish modules only
                     </Dropdown.Item>
-                    {/* Create two more items with IDs wd-unpublish-all-modules-and-items and wd-unpublish-modules-only with
-             labels Unpublish all modules and items and Unpublish modules only */}
+                    <Dropdown.Item id="wd-unpublish-all-modules-and-items">
+                        <LuCircleSlash2 /> Unpublish all modules
+                    </Dropdown.Item>
+                    <Dropdown.Item id="wd-unpublish-modules-only">
+                        <LuCircleSlash2 /> Unpublish modules only
+                    </Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
-            {/* Implement the View Progress and Collapse All buttons with IDs wd-view-progress and wd-collapse-all */}
+            <Button variant="secondary" size="lg" className="me-1 float-end" id="wd-collapse-all">
+                Collapse All
+            </Button>
+            <Button variant="secondary" size="lg" className="me-1 float-end" id="wd-view-progress">
+                View Progress
+            </Button>
         </div>
     );
 }
