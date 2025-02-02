@@ -33,8 +33,7 @@ export default function Modules() {
               <BsGripVertical className="me-2 fs-3" />LESSON 2 <LessonControlButtons /></ListGroup.Item>
           </ListGroup>
         </ListGroup.Item>
-      </ListGroup >
-    </div >
-
+      </ListGroup>
+    </div>
   );
 }

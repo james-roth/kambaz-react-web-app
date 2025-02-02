@@ -6,11 +6,14 @@ export default function AssignmentEditor() {
     return (
         <div id="wd-assignments-editor">
             <Row>
-                <Form.Label htmlFor="wd-asgn-name" className="pe-2 mt-2">Assignment Name</Form.Label>
-                <InputGroup className="mt-2" style={{ width: "70%" }}>
-                    <Form.Control id="wd-asgn-name" className="border-2" placeholder="Assignment 0" />
-                </InputGroup>
-                <Form.Control as="textarea" rows={5} style={{ width: "69%" }} className="mt-4 ms-2 pe-5 border-2" />
+                <Col xs={1}></Col>
+                <Col>
+                    <Form.Label htmlFor="wd-asgn-name" className="pe-2 mt-2">Assignment Name</Form.Label>
+                    <InputGroup className="mt-2" style={{ width: "70%" }}>
+                        <Form.Control id="wd-asgn-name" className="border-2" placeholder="Assignment 0" />
+                    </InputGroup>
+                    <Form.Control as="textarea" rows={5} style={{ width: "69%" }} className="mt-4 pe-5 border-2" />
+                </Col>
             </Row>
             <Row className="mt-4">
                 <Col xs={2} className="d-flex justify-content-end">
@@ -103,8 +106,8 @@ export default function AssignmentEditor() {
                 </Col>
             </Row>
             <Row className="mt-4">
-                <Col xs={6}>
-                    <hr className="border-3"></hr>
+                <Col xs={8}>
+                    <hr className="border-3 ms-5"></hr>
                     <Button variant="secondary" id="wd-assign-edit-cancel" style={{ float: "right" }}>Cancel</Button>
                     <Button variant="secondary" className="me-1" id="wd-assign-edit-save" style={{ float: "right" }}>Save</Button>
                 </Col>

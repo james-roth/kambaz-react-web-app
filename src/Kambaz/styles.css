@@ -80,3 +80,13 @@ body * {
   border-left: unset !important;
   padding-left: 3px;
 }
+
+.wd-signin-menu-toggled {
+  border-left: 2px solid black !important;
+  padding-left: 3px;
+}
+
+.wd-signin-menu-untoggled {
+  border-left: unset !important;
+  padding-left: 3px;
+}

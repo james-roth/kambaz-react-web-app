@@ -16,11 +16,11 @@ function updateCourseNav(id_str: string, toggle: boolean, stop_recur: boolean=fa
     }
     if (toggle) {
         //toggle the element selected
-        old_classname.replace("bg-black", "bg-white");
+        old_classname.replace("wd-course-menu-untoggled", "wd-course-menu-toggled");
         old_classname.replace("text-danger", "text-black");
     } else {
         // toggle the element unselected, reset colors
-        old_classname.replace("bg-white", "bg-black");
+        old_classname.replace("wd-course-menu-toggled", "wd-course-menu-untoggled");
         old_classname.replace("text-black", "text-danger");
     }
 
