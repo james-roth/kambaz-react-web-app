@@ -6,9 +6,13 @@ import { BsGripVertical } from 'react-icons/bs';
 import AssignmentControlButtons from "./AssignmentControlButtons";
 import { CgArrowDownO } from "react-icons/cg";
 import { BiBook } from "react-icons/bi";
+import { useParams } from 'react-router';
+import * as db from "../../Database"
 
 
 export default function Assignments() {
+    const { cid } = useParams()
+    const asgns = db.assignments
     return (
         <div id="wd-assignments">
             <div className="d-flex justify-content-between">
@@ -43,58 +47,34 @@ export default function Assignments() {
                         </div>
                     </div>
                 </ListGroup.Item>
-                <ListGroup.Item className="wd-asgn ps-2">
-                    <div className="d-flex ml-auto">
-                        <Link to="/Kambaz/Courses/1234/Assignments/123" className="list-group-item border-0" >
-                            <div className="d-flex ps-1 mt-1">
-                                <div className="d-flex mt-4">
-                                    <BsGripVertical size="30" />
-                                    <BiBook className="me-2" size="30" />
-                                </div>
-                                <div className="d-flex flex-column ms-3">
-                                    <text className="wd-asgn-link-font pe-4">A1</text>
+                {asgns.filter((assignments: any) => assignments.course == cid).map((asgn: any) => (
+                    <ListGroup.Item className="wd-asgn ps-2">
+                        <div className="d-flex ml-auto">
+                            <Link to="/Kambaz/Courses/1234/Assignments/123" className="list-group-item border-0" >
+                                <div className="d-flex ps-1 mt-1">
+                                    <div className="d-flex mt-4">
+                                        <BsGripVertical size="30" />
+                                        <BiBook className="me-2" size="30" />
+                                    </div>
+                                    <div className="d-flex flex-column ms-3">
+                                        <text className="wd-asgn-link-font pe-4">{asgn.title}</text>
 
-                                    <text className="wd-asgn-modules-text">
-                                        Multiple Modules
-                                    </text>
-                                    <text className="wd-asgn-description-text">
-                                        | <strong>Not available until </strong> May 27th at 1:00am. |
-                                        Introductory homework assignment for CS 4550. | 100pts.
-                                    </text>
+                                        <text className="wd-asgn-modules-text">
+                                            Multiple Modules
+                                        </text>
+                                        <text className="wd-asgn-description-text">
+                                            | <strong>Not available until </strong> {asgn.avail_date}. |
+                                            <strong> Due </strong> {asgn.due_date}. | {asgn.points}pts.
+                                        </text>
+                                    </div>
                                 </div>
+                            </Link>
+                            <div className="ms-auto mt-4">
+                                <AssignmentControlButtons />
                             </div>
-                        </Link>
-                        <div className="ms-auto mt-4">
-                            <AssignmentControlButtons />
                         </div>
-                    </div>
-                </ListGroup.Item>
-                <ListGroup.Item className="wd-asgn ps-2">
-                    <div className="d-flex ml-auto">
-                        <Link to="/Kambaz/Courses/1234/Assignments/123" className="list-group-item border-0" >
-                            <div className="d-flex ps-1 mt-1">
-                                <div className="d-flex mt-4">
-                                    <BsGripVertical size="30" />
-                                    <BiBook className="me-2" size="30" />
-                                </div>
-                                <div className="d-flex flex-column ms-3">
-                                    <text className="wd-asgn-link-font pe-4">A2</text>
-
-                                    <text className="wd-asgn-modules-text">
-                                        Multiple Modules
-                                    </text>
-                                    <text className="wd-asgn-description-text">
-                                        | <strong>Not available until </strong> May 31st at 1:00am. |
-                                        CSS part 1 for CS4550. Homework assignment. | 100pts.
-                                    </text>
-                                </div>
-                            </div>
-                        </Link>
-                        <div className="ms-auto mt-4">
-                            <AssignmentControlButtons />
-                        </div>
-                    </div>
-                </ListGroup.Item>
+                    </ListGroup.Item>
+                ))}
             </ListGroup>
         </div>
     );

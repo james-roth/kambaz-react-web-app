@@ -72,13 +72,13 @@ body * {
 }
 
 .wd-course-menu-toggled {
+  color: black;
   border-left: 2px solid black !important;
-  padding-left: 3px;
 }
 
 .wd-course-menu-untoggled {
+  color: red;
   border-left: unset !important;
-  padding-left: 3px;
 }
 
 .wd-signin-menu-toggled {
