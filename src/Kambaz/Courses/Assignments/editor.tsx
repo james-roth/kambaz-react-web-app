@@ -8,7 +8,6 @@ import * as db from "../../Database"
 export default function AssignmentEditor() {
     const { cid } = useParams();
     const { aid } = useParams();
-    const { pathname } = useParams();
     const asgn = db.assignments.filter((asgn: any) => asgn.course == cid && asgn._id == aid)[0]
 
     return (
