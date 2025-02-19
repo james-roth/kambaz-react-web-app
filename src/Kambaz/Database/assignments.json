@@ -5,6 +5,8 @@
         "course": "RS101",
         "avail_date": "May 27th at 1:00am",
         "due_date": "May 31st at 1:00am",
+        "avail_date_str": "2025-05-27",
+        "due_date_str": "2025-05-31",
         "points": "100"
     },
     {
@@ -13,6 +15,8 @@
         "course": "RS101",
         "avail_date": "May 27th at 1:00am",
         "due_date": "May 31st at 1:00am",
+        "avail_date_str": "2025-05-27",
+        "due_date_str": "2025-05-31",
         "points": "100"
     },
     {
@@ -21,6 +25,8 @@
         "course": "RS101",
         "avail_date": "May 27th at 1:00am",
         "due_date": "May 31st at 1:00am",
+        "avail_date_str": "2025-05-27",
+        "due_date_str": "2025-05-31",
         "points": "100"
     },
     {
@@ -29,6 +35,8 @@
         "course": "RS102",
         "avail_date": "May 27th at 1:00am",
         "due_date": "May 31st at 1:00am",
+        "avail_date_str": "2025-05-27",
+        "due_date_str": "2025-05-31",
         "points": "100"
     },
     {
@@ -37,6 +45,8 @@
         "course": "RS102",
         "avail_date": "May 27th at 1:00am",
         "due_date": "May 31st at 1:00am",
+        "avail_date_str": "2025-05-27",
+        "due_date_str": "2025-05-31",
         "points": "100"
     },
     {
@@ -45,6 +55,8 @@
         "course": "RS102",
         "avail_date": "May 27th at 1:00am",
         "due_date": "May 31st at 1:00am",
+        "avail_date_str": "2025-05-27",
+        "due_date_str": "2025-05-31",
         "points": "100"
     },
     {
@@ -53,6 +65,8 @@
         "course": "RS103",
         "avail_date": "May 27th at 1:00am",
         "due_date": "May 31st at 1:00am",
+        "avail_date_str": "2025-05-27",
+        "due_date_str": "2025-05-31",
         "points": "100"
     },
     {
@@ -61,6 +75,8 @@
         "course": "RS103",
         "avail_date": "May 27th at 1:00am",
         "due_date": "May 31st at 1:00am",
+        "avail_date_str": "2025-05-27",
+        "due_date_str": "2025-05-31",
         "points": "100"
     },
     {
@@ -69,6 +85,8 @@
         "course": "RS103",
         "avail_date": "May 27th at 1:00am",
         "due_date": "May 31st at 1:00am",
+        "avail_date_str": "2025-05-27",
+        "due_date_str": "2025-05-31",
         "points": "100"
     }
 ]

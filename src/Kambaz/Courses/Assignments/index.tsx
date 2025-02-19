@@ -50,7 +50,7 @@ export default function Assignments() {
                 {asgns.filter((assignments: any) => assignments.course == cid).map((asgn: any) => (
                     <ListGroup.Item className="wd-asgn ps-2">
                         <div className="d-flex ml-auto">
-                            <Link to="/Kambaz/Courses/1234/Assignments/123" className="list-group-item border-0" >
+                            <Link to={`/Kambaz/Courses/${cid}/Assignments/${asgn._id}`} className="list-group-item border-0" >
                                 <div className="d-flex ps-1 mt-1">
                                     <div className="d-flex mt-4">
                                         <BsGripVertical size="30" />

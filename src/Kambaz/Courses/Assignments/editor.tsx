@@ -1,8 +1,16 @@
 import { Form, FormCheck, FormSelect, InputGroup } from 'react-bootstrap';
 import { Row, Col, Button } from 'react-bootstrap';
 import Multiselect from 'multiselect-react-dropdown';
+import { useParams } from 'react-router';
+import * as db from "../../Database"
+
 
 export default function AssignmentEditor() {
+    const { cid } = useParams();
+    const { aid } = useParams();
+    const { pathname } = useParams();
+    const asgn = db.assignments.filter((asgn: any) => asgn.course == cid && asgn._id == aid)[0]
+
     return (
         <div id="wd-assignments-editor">
             <Row>
@@ -10,7 +18,7 @@ export default function AssignmentEditor() {
                 <Col>
                     <Form.Label htmlFor="wd-asgn-name" className="pe-2 mt-2">Assignment Name</Form.Label>
                     <InputGroup className="mt-2" style={{ width: "70%" }}>
-                        <Form.Control id="wd-asgn-name" className="border-2" placeholder="Assignment 0" />
+                        <Form.Control id="wd-asgn-name" className="border-2" placeholder={asgn.title} />
                     </InputGroup>
                     <Form.Control as="textarea" rows={5} style={{ width: "69%" }} className="mt-4 pe-5 border-2" />
                 </Col>
@@ -20,7 +28,7 @@ export default function AssignmentEditor() {
                     <Form.Label htmlFor="wd-asgn-points" className="mt-2">Points</Form.Label>
                 </Col>
                 <Col>
-                    <Form.Control id="wd-asgn-points" className="border-2" value="100" style={{ width: "40%" }} />
+                    <Form.Control id="wd-asgn-points" className="border-2" value={asgn.points} style={{ width: "40%" }} />
                 </Col>
             </Row>
             <Row className="mt-4">
@@ -91,25 +99,25 @@ export default function AssignmentEditor() {
                 <Col xs={2}></Col>
                 <Col>
                     <Form.Label htmlFor="wd-asgn-due-date">Due</Form.Label>
-                    <Form.Control id="wd-asgn-due-date" type="date" placeholder="01-01-2025" style={{ width: "150px" }} />
+                    <Form.Control id="wd-asgn-due-date" type="date" value={asgn.due_date_str} style={{ width: "150px" }} />
                 </Col>
             </Row>
             <Row className="mt-2">
                 <Col xs={2}></Col>
                 <Col xs={1} className="me-5">
                     <Form.Label htmlFor="wd-asgn-available-from">Available From</Form.Label>
-                    <Form.Control id="wd-asgn-available-from" type="date" placeholder="01-01-2025" style={{ width: "150px" }} />
+                    <Form.Control id="wd-asgn-available-from" type="date" value={asgn.avail_date_str} style={{ width: "150px" }} />
                 </Col>
                 <Col>
                     <Form.Label htmlFor="wd-asgn-available-until">Until</Form.Label>
-                    <Form.Control id="wd-asgn-available-until" type="date" placeholder="01-01-2025" style={{ width: "150px" }} />
+                    <Form.Control id="wd-asgn-available-until" type="date" value={asgn.due_date_str} style={{ width: "150px" }} />
                 </Col>
             </Row>
             <Row className="mt-4">
                 <Col xs={8}>
                     <hr className="border-3 ms-5"></hr>
-                    <Button variant="secondary" id="wd-assign-edit-cancel" style={{ float: "right" }}>Cancel</Button>
-                    <Button variant="secondary" className="me-1" id="wd-assign-edit-save" style={{ float: "right" }}>Save</Button>
+                    <Button variant="secondary" id="wd-assign-edit-cancel" style={{ float: "right" }} href={`#/Kambaz/Courses/${cid}/Assignments`}>Cancel</Button>
+                    <Button variant="secondary" className="me-1" id="wd-assign-edit-save" style={{ float: "right" }} href={`#/Kambaz/Courses/${cid}/Assignments`}>Save</Button>
                 </Col>
             </Row>
         </div >
