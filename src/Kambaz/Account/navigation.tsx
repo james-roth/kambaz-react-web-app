@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import { useSelector } from "react-redux";
 let element_last = "";
 
 function updateSigninNav(id_str: string, toggle: boolean, stop_recur: boolean = false) {
@@ -41,14 +41,25 @@ function updateSigninNav(id_str: string, toggle: boolean, stop_recur: boolean = 
 }
 
 export default function AccountNavigation() {
+    const { currentUser } = useSelector((state: any) => state.accountReducer);
+    const links = currentUser ? ["Profile"] : ["Signin", "Signup"];
     return (
         <div id="wd-account-navigation">
-            <Link to={`/Kambaz/Account/Signin`} id="wd-signin-link" className="list-group-item wd-signin-menu-untoggled text-danger"
-                onClick={() => updateSigninNav("wd-signin-link", true)}>Signin  </Link> <br />
-            <Link to={`/Kambaz/Account/Signup`} id="wd-signup-link" className="list-group-item wd-signin-menu-untoggled text-danger"
-                onClick={() => updateSigninNav("wd-signup-link", true)}>Signup  </Link> <br />
-            <Link to={`/Kambaz/Account/Profile`} id="wd-signin-profile-link" className="list-group-item wd-signin-menu-untoggled text-danger"
-                onClick={() => updateSigninNav("wd-signin-profile-link", true)}>Profile </Link> <br />
+            {links.map((link) => (
+                <Link to={`/Kambaz/Account/${link}`} id={`wd-signin-${link.toLowerCase()}-link`}
+                    className="list-group-item wd-signin-menu-untoggled text-danger"
+                    onClick={() => updateSigninNav(`wd-signin-${link.toLowerCase()}-link`, true)}>
+                    {link} </Link>
+            ))}
         </div>
     );
 }
+
+
+
+// <Link to={`/Kambaz/Account/Signin`} id="wd-signin-link" className="list-group-item wd-signin-menu-untoggled text-danger"
+// onClick={() => updateSigninNav("wd-signin-link", true)}>Signin  </Link> <br />
+// <Link to={`/Kambaz/Account/Signup`} id="wd-signup-link" className="list-group-item wd-signin-menu-untoggled text-danger"
+// onClick={() => updateSigninNav("wd-signup-link", true)}>Signup  </Link> <br />
+// <Link to={`/Kambaz/Account/Profile`} id="wd-signin-profile-link" className="list-group-item wd-signin-menu-untoggled text-danger"
+// onClick={() => updateSigninNav("wd-signin-profile-link", true)}>Profile </Link> <br />

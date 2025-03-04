@@ -6,13 +6,29 @@ import { BsGripVertical } from 'react-icons/bs';
 import AssignmentControlButtons from "./AssignmentControlButtons";
 import { CgArrowDownO } from "react-icons/cg";
 import { BiBook } from "react-icons/bi";
-import { useParams } from 'react-router';
-import * as db from "../../Database"
+import { useParams, useNavigate } from 'react-router';
+import { useSelector, useDispatch } from "react-redux";
+import { deleteAssignment } from "./reducer";
 
+
+function gen_date_string(date_raw: string) {
+    const date = new Date(date_raw)
+    const month = date.toLocaleDateString('default', { month: 'long', timeZone: 'UTC' });
+    const day = date.toLocaleDateString('default', { day: '2-digit', timeZone: 'UTC' });
+    return `${month} ${day}`
+}
 
 export default function Assignments() {
+    const nav = useNavigate();
+    const dispatch = useDispatch();
     const { cid } = useParams()
-    const asgns = db.assignments
+    const { assignments } = useSelector((state: any) => state.assignmentReducer);
+    const generate_new_aid = () => {
+        return Math.max(
+            ...assignments.filter((assignments: any) => assignments.course == cid)
+                .map((a: any) => parseInt(a._id.substring(1)))) + 1
+    }
+
     return (
         <div id="wd-assignments">
             <div className="d-flex justify-content-between">
@@ -27,7 +43,8 @@ export default function Assignments() {
                         <span> <FaPlus className="position-relative me-2" /> </span>
                         <span>Group</span>
                     </Button>
-                    <Button variant="danger" className="me-2 flex-end" id="wd-add-assignment" style={{ display: 'flex', alignItems: 'center' }}>
+                    <Button variant="danger" className="me-2 flex-end" id="wd-add-assignment" style={{ display: 'flex', alignItems: 'center' }}
+                        onClick={() => { nav(`${generate_new_aid()}`) }} >
                         <span> <FaPlus className="position-relative me-2" /> </span>
                         <span>Assignment</span>
                     </Button>
@@ -47,7 +64,7 @@ export default function Assignments() {
                         </div>
                     </div>
                 </ListGroup.Item>
-                {asgns.filter((assignments: any) => assignments.course == cid).map((asgn: any) => (
+                {assignments.filter((assignments: any) => assignments.course == cid).map((asgn: any) => (
                     <ListGroup.Item className="wd-asgn ps-2">
                         <div className="d-flex ml-auto">
                             <Link to={`/Kambaz/Courses/${cid}/Assignments/${asgn._id}`} className="list-group-item border-0" >
@@ -63,14 +80,14 @@ export default function Assignments() {
                                             Multiple Modules
                                         </text>
                                         <text className="wd-asgn-description-text">
-                                            | <strong>Not available until </strong> {asgn.avail_date}. |
-                                            <strong> Due </strong> {asgn.due_date}. | {asgn.points}pts.
+                                            | <strong>Not available until </strong> {gen_date_string(asgn.avail_date_str)}. |
+                                            <strong> Due </strong> {gen_date_string(asgn.due_date_str)}. | {asgn.points}pts.
                                         </text>
                                     </div>
                                 </div>
                             </Link>
                             <div className="ms-auto mt-4">
-                                <AssignmentControlButtons />
+                                <AssignmentControlButtons deleteAssignment={() => dispatch(deleteAssignment(asgn._id))}/>
                             </div>
                         </div>
                     </ListGroup.Item>

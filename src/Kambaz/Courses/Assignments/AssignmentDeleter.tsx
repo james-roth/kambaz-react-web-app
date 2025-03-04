@@ -1,0 +1,25 @@
+import { Modal, Button } from "react-bootstrap";
+
+export default function AssignmentDelete({ show, handleClose, dialogTitle, deleteAssignment }: {
+    show: boolean; handleClose: () => void; dialogTitle: string; deleteAssignment: () => void;
+}) {
+    return (
+        <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+                <Modal.Title>{dialogTitle}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <span>Are you sure you want to delete this assignment?</span>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}> Cancel </Button>
+                <Button variant="primary"
+                    onClick={(e) => {
+                        deleteAssignment();
+                        handleClose();
+                        e.preventDefault();
+                    }} > Yes </Button>
+            </Modal.Footer>
+        </Modal>
+    );
+}

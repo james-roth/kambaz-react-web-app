@@ -2,12 +2,20 @@ import { FaPlus } from "react-icons/fa6";
 import GreenCheckmark from "./GreenCheckmark";
 import { Button, Dropdown } from "react-bootstrap";
 import { LuCircleSlash2 } from "react-icons/lu";
+import { useState } from "react";
+import ModuleEditor from "./ModuleEditor";
 
-export default function ModulesControls() {
+
+export default function ModulesControls(
+    { moduleName, setModuleName, addModule }:
+        { moduleName: string; setModuleName: (title: string) => void; addModule: () => void; }) {
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
     return (
         <div id="wd-modules-controls" className="text-nowrap">
             <Button variant="danger" size="lg" className="me-1 float-end" id="wd-add-module-btn">
-                <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
+                <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} onClick={handleShow} />
                 Module
             </Button>
             <Dropdown className="float-end me-2">
@@ -38,6 +46,8 @@ export default function ModulesControls() {
             <Button variant="secondary" size="lg" className="me-1 float-end" id="wd-view-progress">
                 View Progress
             </Button>
+            <ModuleEditor show={show} handleClose={handleClose} dialogTitle="Add Module"
+                moduleName={moduleName} setModuleName={setModuleName} addModule={addModule} />
         </div>
     );
 }

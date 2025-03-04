@@ -8,6 +8,8 @@ import ArrayStateVariable from './ArrayStateVariable';
 import BooleanStateVariables from './BooleanStateVariables';
 import EventObject from './EventObject';
 import ParentStateComponent from './ParentStateComponent';
+import ReduxExamples from './ReduxExamples';
+import TodoList from './ReduxExamples/todos/TodoList';
 
 export default function Lab4() {
     function sayHello() {
@@ -27,6 +29,8 @@ export default function Lab4() {
             <BooleanStateVariables />
             <ArrayStateVariable />
             <ParentStateComponent />
+            <ReduxExamples/>
+            <TodoList />
         </div>
     );
 }
