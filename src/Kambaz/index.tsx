@@ -2,6 +2,7 @@ import { Route, Routes, Link } from "react-router";
 import Account from "./Account";
 import Dashboard from "./dashboard";
 import Courses from "./Courses";
+import * as courseClient from "./Courses/client";
 import KambazNavigation from "./navigation";
 import Labs from "../Labs";
 import "./styles.css";
@@ -9,7 +10,7 @@ import * as db from "./Database";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import ProtectedRoute from "./Account/ProtectedRoute";
-
+import Session from "./Account/Session";
 
 export default function Kambaz() {
     const [courses, setCourses] = useState<any[]>(db.courses);
@@ -23,7 +24,8 @@ export default function Kambaz() {
     const deleteCourse = (courseId: any) => {
         setCourses(courses.filter((course) => course._id !== courseId));
     };
-    const updateCourse = () => {
+    const updateCourse = async () => {
+        await courseClient.updateCourse(course);
         setCourses(
             courses.map((c) => {
                 if (c._id === course._id) {
@@ -36,26 +38,28 @@ export default function Kambaz() {
     };
 
     return (
-        <div id="wd-kambaz">
-            <h1 className="text-danger wd-main-content-offset pt-3">Kambaz</h1>
-            <Link to="/Kambaz/Labs/Lab1" id="wd-labs-link-main" className="wd-main-content-offset">Link to Labs</Link>
-            <KambazNavigation />
-            <div className="wd-main-content-offset p-3">
-                <Routes>
-                    <Route path="/Account/*" element={<Account />} />
-                    <Route path="/Dashboard" element={<ProtectedRoute> <Dashboard
-                        courses={courses}
-                        course={course}
-                        setCourse={setCourse}
-                        addNewCourse={addNewCourse}
-                        deleteCourse={deleteCourse}
-                        updateCourse={updateCourse} /> </ProtectedRoute>} />
-                    <Route path="/Courses/:cid/*" element={<ProtectedRoute><Courses courses={courses} /></ProtectedRoute>} />
-                    <Route path="/Calendar" element={<h1>Calendar</h1>} />
-                    <Route path="/Inbox" element={<h1>Inbox</h1>} />
-                    <Route path="/Labs/*" element={<Labs />} />
-                </Routes>
-            </div>
-        </div >
+        <Session>
+            <div id="wd-kambaz">
+                <h1 className="text-danger wd-main-content-offset pt-3">Kambaz</h1>
+                <Link to="/Kambaz/Labs/Lab1" id="wd-labs-link-main" className="wd-main-content-offset">Link to Labs</Link>
+                <KambazNavigation />
+                <div className="wd-main-content-offset p-3">
+                    <Routes>
+                        <Route path="/Account/*" element={<Account />} />
+                        <Route path="/Dashboard" element={<ProtectedRoute> <Dashboard
+                            courses={courses}
+                            course={course}
+                            setCourse={setCourse}
+                            addNewCourse={addNewCourse}
+                            deleteCourse={deleteCourse}
+                            updateCourse={updateCourse} /> </ProtectedRoute>} />
+                        <Route path="/Courses/:cid/*" element={<ProtectedRoute><Courses courses={courses} /></ProtectedRoute>} />
+                        <Route path="/Calendar" element={<h1>Calendar</h1>} />
+                        <Route path="/Inbox" element={<h1>Inbox</h1>} />
+                        <Route path="/Labs/*" element={<Labs />} />
+                    </Routes>
+                </div>
+            </div >
+        </Session>
     );
 }
