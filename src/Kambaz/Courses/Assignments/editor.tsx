@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 import { useState } from 'react';
 import { addAssignment, updateAssignment } from './reducer';
+import * as assignmentClient from "./client";
 
 
 export default function AssignmentEditor() {
@@ -13,6 +14,15 @@ export default function AssignmentEditor() {
     const { assignments } = useSelector((state: any) => state.assignmentReducer);
     const [assignment, setAssignment] = useState(assignments.find((a: any) => a._id == aid) ? assignments.find((a: any) => a._id == aid) : { _id: aid, course: cid });
     const dispatch = useDispatch();
+
+    const createAssignment = async (assignment: any) => {
+        await assignmentClient.addAssignmentForCourse(assignment.course, assignment);
+        dispatch(addAssignment(assignment));
+    }
+    const modifyAssignment = async (assignment: any) => {
+        await assignmentClient.updateAssignmentForCourse(assignment.course, assignment._id, assignment);
+        dispatch(updateAssignment(assignment));
+    }
 
     return (
         <div id="wd-assignments-editor">
@@ -130,8 +140,8 @@ export default function AssignmentEditor() {
                     <Button variant="secondary" className="me-1" id="wd-assign-edit-save" style={{ float: "right" }}
                         onClick={() => {
                             assignments.filter((a: any) => a._id == aid).length > 0 ?
-                                dispatch(updateAssignment(assignment)) :
-                                dispatch(addAssignment(assignment));
+                                modifyAssignment(assignment) :
+                                createAssignment(assignment);
                         }}
                         href={`#/Kambaz/Courses/${cid}/Assignments`}>Save</Button>
                 </Col>

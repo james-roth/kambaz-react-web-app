@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { Row, Card, Col, Button, FormControl } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
-import { addEnrollment, deleteEnrollment } from "./enrollReducer";
+import { useState, useEffect } from "react";
+import { addEnrollment, deleteEnrollment, setEnrollments } from "./enrollReducer";
+import * as enrollmentsClient from "./client"
 
 export default function Dashboard(
     { courses, course, setCourse, addNewCourse,
@@ -16,6 +17,21 @@ export default function Dashboard(
     const { enrollments } = useSelector((state: any) => state.enrollReducer);
     const [enrollBtn, setEnrollBtn] = useState<any>(0);
     const dispatch = useDispatch();
+    const fetchEnrollments= async () => {
+        const assignments = await enrollmentsClient.getEnrollmentsForUser(currentUser._id as string);
+        dispatch(setEnrollments(assignments));
+    }
+    const createEnrollment = async (enrollment: any) => {
+        await enrollmentsClient.addEnrollment(enrollment);
+        dispatch(addEnrollment(enrollment));
+    };
+    const removeEnrollment = async (enrollment: any) => {
+        await enrollmentsClient.deleteEnrollment(enrollment._id);
+        dispatch(deleteEnrollment(enrollment));
+    };
+    useEffect(() => {
+        fetchEnrollments();
+    }, [])
 
     return (
         <div id="wd-dashboard">
@@ -107,9 +123,8 @@ export default function Dashboard(
                                                         {!enrollments.some((enrollment: any) => enrollment.user === currentUser._id && enrollment.course === course._id) &&
                                                             <button onClick={(event) => {
                                                                 event.preventDefault();
-                                                                dispatch(addEnrollment(
-                                                                    { _id: -1, user: currentUser._id, course: course._id }
-                                                                ));
+                                                                const en = { _id: -1, user: currentUser._id, course: course._id };
+                                                                createEnrollment(en);
                                                             }} className="btn btn-success float-end mb-1"
                                                                 id="wd-add-course-enrollment-btn">
                                                                 Enroll
@@ -117,9 +132,8 @@ export default function Dashboard(
                                                         {enrollments.some((enrollment: any) => enrollment.user === currentUser._id && enrollment.course === course._id) &&
                                                             <button onClick={(event) => {
                                                                 event.preventDefault();
-                                                                dispatch(deleteEnrollment(
-                                                                    enrollments.find((enrollment: any) => enrollment.user === currentUser._id && enrollment.course === course._id)._id
-                                                                ));
+                                                                const en = enrollments.find((enrollment: any) => enrollment.user === currentUser._id && enrollment.course === course._id)._id
+                                                                removeEnrollment(en);
                                                             }} className="btn btn-danger float-end mb-1"
                                                                 id="wd-delete-course-enrollment-btn">
                                                                 Unenroll

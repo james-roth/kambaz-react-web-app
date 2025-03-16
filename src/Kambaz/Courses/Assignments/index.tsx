@@ -8,7 +8,9 @@ import { CgArrowDownO } from "react-icons/cg";
 import { BiBook } from "react-icons/bi";
 import { useParams, useNavigate } from 'react-router';
 import { useSelector, useDispatch } from "react-redux";
-import { deleteAssignment } from "./reducer";
+import { setAssignments, deleteAssignment } from "./reducer";
+import * as assignmentsClient from "./client"
+import { useEffect } from "react";
 
 
 function gen_date_string(date_raw: string) {
@@ -28,6 +30,17 @@ export default function Assignments() {
             ...assignments.filter((assignments: any) => assignments.course == cid)
                 .map((a: any) => parseInt(a._id.substring(1)))) + 1
     }
+    const fetchAssignments = async () => {
+        const assignments = await assignmentsClient.findAllAssignmentsForCourse(cid as string);
+        dispatch(setAssignments(assignments));
+    }
+    const removeAssignment = async (asgn: any) => {
+        await assignmentsClient.deleteAssignmentForCourse(asgn.course, asgn._id);
+        dispatch(deleteAssignment(asgn._id))
+    };
+    useEffect(() => {
+        fetchAssignments();
+    }, [])
 
     return (
         <div id="wd-assignments">
@@ -64,7 +77,7 @@ export default function Assignments() {
                         </div>
                     </div>
                 </ListGroup.Item>
-                {assignments.filter((assignments: any) => assignments.course == cid).map((asgn: any) => (
+                {assignments.map((asgn: any) => (
                     <ListGroup.Item className="wd-asgn ps-2">
                         <div className="d-flex ml-auto">
                             <Link to={`/Kambaz/Courses/${cid}/Assignments/${asgn._id}`} className="list-group-item border-0" >
@@ -87,7 +100,7 @@ export default function Assignments() {
                                 </div>
                             </Link>
                             <div className="ms-auto mt-4">
-                                <AssignmentControlButtons deleteAssignment={() => dispatch(deleteAssignment(asgn._id))}/>
+                                <AssignmentControlButtons deleteAssignment={() => removeAssignment(asgn)}/>
                             </div>
                         </div>
                     </ListGroup.Item>
