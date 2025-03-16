@@ -1,13 +1,10 @@
 import js from '@eslint/js'
-import globals, { node } from 'globals'
+import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
 
 export default tseslint.config(
-  { languageOptions: { globals: globals.browser } },
-  pluginJs.configs.recommended,
-  node.global = true,
   { ignores: ['dist'] },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
