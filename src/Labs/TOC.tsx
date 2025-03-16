@@ -26,7 +26,6 @@ export default function TOC() {
                 <Nav.Link href="https://github.com/james-roth/kambaz-react-web-app">GitHub Kambaz Source Code</Nav.Link>
                 <Nav.Link href="https://github.com/james-roth/kambaz-node-server-app">GitHub Backend Server Source Code</Nav.Link>
                 <Nav.Link href="https://james-roth-wd25-kambaz-node-server-app.onrender.com/">Render.com server hosting</Nav.Link>
-                
             </Nav.Item>
         </Nav>
     );
