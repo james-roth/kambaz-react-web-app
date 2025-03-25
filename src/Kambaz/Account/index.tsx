@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Signin from "./signin";
 import Profile from "./profile";
 import Signup from "./signup";
+import Users from "./Users";
 import AccountNavigation from "./navigation";
 import { Row, Col } from "react-bootstrap";
 
@@ -21,6 +22,8 @@ export default function Account() {
             <Route path="/Signin" element={<Signin />} />
             <Route path="/Profile" element={<Profile />} />
             <Route path="/Signup" element={<Signup />} />
+            <Route path="/Users" element={<Users />} />
+            <Route path="/Users/:uid" element={<Users />} />
           </Routes>
         </Col>
       </Row>
