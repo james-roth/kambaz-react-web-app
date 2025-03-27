@@ -124,25 +124,6 @@ export default function Dashboard(
                                                     <Card.Text className="wd-dashboard-course-description overflow-hidden" style={{ height: "100px" }}>
                                                         {course.description} </Card.Text>
                                                     <div>
-
-                                                        {/* {!enrollments.some((enrollment: any) => enrollment.user === currentUser._id && enrollment.course === course._id) &&
-                                                            <button onClick={(event) => {
-                                                                event.preventDefault();
-                                                                const en = { _id: -1, user: currentUser._id, course: course._id };
-                                                                createEnrollment(en);
-                                                            }} className="btn btn-success float-end mb-1"
-                                                                id="wd-add-course-enrollment-btn">
-                                                                Enroll
-                                                            </button>}
-                                                        {enrollments.some((enrollment: any) => enrollment.user === currentUser._id && enrollment.course === course._id) &&
-                                                            <button onClick={(event) => {
-                                                                event.preventDefault();
-                                                                const en = enrollments.find((enrollment: any) => enrollment.user === currentUser._id && enrollment.course === course._id)._id
-                                                                removeEnrollment(en);
-                                                            }} className="btn btn-danger float-end mb-1"
-                                                                id="wd-delete-course-enrollment-btn">
-                                                                Unenroll
-                                                            </button>} */}
                                                         {enrolling && (
                                                             <button onClick={(event) => {
                                                                 event.preventDefault();

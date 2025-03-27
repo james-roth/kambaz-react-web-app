@@ -27,8 +27,7 @@ export default function Assignments() {
     const { assignments } = useSelector((state: any) => state.assignmentReducer);
     const generate_new_aid = () => {
         return Math.max(
-            ...assignments.filter((assignments: any) => assignments.course == cid)
-                .map((a: any) => parseInt(a._id.substring(1)))) + 1
+            ...assignments.map((a: any) => parseInt(a._id.substring(1)))) + 1
     }
     const fetchAssignments = async () => {
         const assignments = await assignmentsClient.findAllAssignmentsForCourse(cid as string);
