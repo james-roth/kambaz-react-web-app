@@ -24,14 +24,6 @@ export default function Dashboard(
         const enrollments = await enrollmentsClient.getEnrollmentsForUser(currentUser._id as string);
         dispatch(setEnrollments(enrollments));
     }
-    const createEnrollment = async (enrollment: any) => {
-        await enrollmentsClient.addEnrollment(enrollment);
-        dispatch(addEnrollment(enrollment));
-    };
-    const removeEnrollment = async (enrollment: any) => {
-        await enrollmentsClient.deleteEnrollment(enrollment._id);
-        dispatch(deleteEnrollment(enrollment));
-    };
     useEffect(() => {
         fetchEnrollments();
     }, [])
