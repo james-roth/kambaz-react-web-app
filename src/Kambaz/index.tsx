@@ -21,7 +21,6 @@ export default function Kambaz() {
         startDate: "2023-09-10", endDate: "2023-12-15", description: "New Description",
     });
     const [enrolling, setEnrolling] = useState<boolean>(false);
-
     const updateEnrollment = async (courseId: string, enrolled: boolean) => {
         if (enrolled) {
             await userClient.enrollIntoCourse(currentUser._id, courseId);
