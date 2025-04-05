@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Row, Card, Col, Button, FormControl } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
-import { addEnrollment, deleteEnrollment, setEnrollments } from "./enrollReducer";
+import { setEnrollments } from "./enrollReducer";
 import * as enrollmentsClient from "./client"
 
 export default function Dashboard(
